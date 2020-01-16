@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Bus\" />
-    <Folder Include="Command\" />
-    <Folder Include="Event\" />
+    <PackageReference Include="MediatR" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
