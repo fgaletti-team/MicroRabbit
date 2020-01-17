@@ -122,7 +122,17 @@ namespace MicroRabbit.Infra.Bus
 
         private async Task ProcessEvent(string eventName, string message)
         {
-          
+            var subscriptions = _handlers[eventName];
+            foreach (var subscription in subscriptions)
+            {
+                var handler = Activator.CreateInstance(subscription);
+                if (handler == null) continue;
+                var eventType = _eventTypes.SingleOrDefault(t => t.Name == eventName);
+                var @event = JsonConvert.DeserializeObject(message, eventType);
+                var concreteType = typeof(IEventHandler<>).MakeGenericType(eventType);
+                await (Task)concreteType.GetMethod("Handle").Invoke(handler, new object[] { @event });
+
+            }
         }
     }
 }
