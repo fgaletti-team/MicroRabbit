@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MicroRabbit.Banking.Api.Controllers
+namespace WebApiTest.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
